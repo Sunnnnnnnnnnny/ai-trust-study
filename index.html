@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Trust Study Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:#0b0f18;
+      color:#f3f5ff;
+      display:flex;
+      min-height:100vh;
+      align-items:center;
+      justify-content:center;
+    }
+    .card{
+      background:#141a2a;
+      padding:24px 28px;
+      border-radius:20px;
+      max-width:720px;
+      width:100%;
+      box-shadow:0 18px 40px rgba(0,0,0,.4);
+    }
+    h1{
+      margin-top:0;
+      font-size:20px;
+    }
+    .stem{font-size:18px;margin-bottom:10px;}
+    .options li{margin:4px 0;}
+    .ai-box{
+      margin-top:16px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#1e2640;
+      font-size:14px;
+    }
+    .controls{
+      display:flex;
+      gap:10px;
+      margin-top:18px;
+      flex-wrap:wrap;
+    }
+    button{
+      border:none;
+      border-radius:999px;
+      padding:8px 14px;
+      cursor:pointer;
+      background:#3d5afe;
+      color:white;
+      font-size:13px;
+    }
+    button.secondary{
+      background:#252c42;
+    }
+    select{
+      border-radius:999px;
+      padding:6px 10px;
+      border:none;
+      background:#252c42;
+      color:#e3e7ff;
+    }
+    small{color:#9aa4cc;}
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>AI Trust Study – Question Demo</h1>
+  <div class="stem" id="stem">Loading question...</div>
+  <ul class="options" id="options"></ul>
+
+  <div class="ai-box">
+    <strong>AI Response (<span id="styleLabel">minimal</span>):</strong>
+    <div id="aiText"></div>
+  </div>
+
+  <div class="controls">
+    <button id="prevBtn" class="secondary">← Previous</button>
+    <button id="nextBtn">Next →</button>
+
+    <select id="styleSelect">
+      <option value="minimal">Minimal Bot</option>
+      <option value="nameOnly">Name Only</option>
+      <option value="polite">Polite Tone</option>
+      <option value="avatar">Name + Avatar</option>
+    </select>
+  </div>
+
+  <small id="counter"></small>
+</div>
+
+<script>
+const DATA_URL = "https://raw.githubusercontent.com/Sunnnnnnnnnny/ai-trust-study/main/questions.json";
+
+let questions = [];
+let currentIndex = 0;
+let currentStyle = "minimal";
+
+async function loadQuestions(){
+  const res = await fetch(DATA_URL);
+  const data = await res.json();
+  questions = data.questions || [];
+  currentIndex = 0;
+  render();
+}
+
+function render(){
+  if(!questions.length) return;
+  const q = questions[currentIndex];
+  document.getElementById("stem").textContent = q.stem;
+
+  const optUl = document.getElementById("options");
+  optUl.innerHTML = "";
+  q.options.forEach((opt, i)=>{
+    const li = document.createElement("li");
+    li.textContent = String.fromCharCode(65+i) + ". " + opt;
+    optUl.appendChild(li);
+  });
+
+  document.getElementById("aiText").textContent =
+    q.aiResponses[currentStyle];
+
+  document.getElementById("styleLabel").textContent = currentStyle;
+  document.getElementById("counter").textContent =
+    `Question ${currentIndex+1} of ${questions.length}`;
+}
+
+document.getElementById("nextBtn").addEventListener("click", ()=>{
+  if(!questions.length) return;
+  currentIndex = (currentIndex + 1) % questions.length;
+  render();
+});
+
+document.getElementById("prevBtn").addEventListener("click", ()=>{
+  if(!questions.length) return;
+  currentIndex = (currentIndex - 1 + questions.length) % questions.length;
+  render();
+});
+
+document.getElementById("styleSelect").addEventListener("change", (e)=>{
+  currentStyle = e.target.value;
+  render();
+});
+
+loadQuestions();
+</script>
+</body>
+</html>
