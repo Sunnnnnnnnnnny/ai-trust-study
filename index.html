@@ -91,22 +91,35 @@
 </div>
 
 <script>
+//const DATA_URL = "questions.json";
 const DATA_URL = "https://raw.githubusercontent.com/Sunnnnnnnnnny/ai-trust-study/main/questions.json";
-
 let questions = [];
 let currentIndex = 0;
 let currentStyle = "minimal";
 
 async function loadQuestions(){
-  const res = await fetch(DATA_URL);
-  const data = await res.json();
-  questions = data.questions || [];
-  currentIndex = 0;
-  render();
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) {
+      throw new Error("HTTP error " + res.status);
+    }
+    const data = await res.json();
+    console.log("Loaded data:", data);   // ✅ check this in the console
+    questions = data.questions || [];
+    if (!questions.length) {
+      document.getElementById("stem").textContent = "No questions found.";
+      return;
+    }
+    currentIndex = 0;
+    render();
+  } catch (err) {
+    console.error("Failed to load questions:", err);
+    document.getElementById("stem").textContent = "Failed to load questions.";
+  }
 }
 
 function render(){
-  if(!questions.length) return;
+  if (!questions.length) return;
   const q = questions[currentIndex];
   document.getElementById("stem").textContent = q.stem;
 
@@ -127,13 +140,13 @@ function render(){
 }
 
 document.getElementById("nextBtn").addEventListener("click", ()=>{
-  if(!questions.length) return;
+  if (!questions.length) return;
   currentIndex = (currentIndex + 1) % questions.length;
   render();
 });
 
 document.getElementById("prevBtn").addEventListener("click", ()=>{
-  if(!questions.length) return;
+  if (!questions.length) return;
   currentIndex = (currentIndex - 1 + questions.length) % questions.length;
   render();
 });
