@@ -1,0 +1,148 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "stem": "Which planet in our solar system is the largest by diameter?",
+      "options": ["Earth", "Saturn", "Jupiter", "Neptune"],
+      "correctIndex": 2,
+      "aiResponses": {
+        "minimal": "Bot47283: Jupiter is the largest planet in our solar system by diameter.",
+        "nameOnly": "Dr. Smith: Jupiter is the largest planet in our solar system by diameter.",
+        "polite": "I'm happy to help! Jupiter is the largest planet in our solar system by diameter.",
+        "avatar": "Alex: I'd go with Jupiter — it's the largest planet in our solar system by diameter."
+      }
+    },
+    {
+      "id": 2,
+      "stem": "Which ocean is the largest by surface area?",
+      "options": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+      "correctIndex": 2,
+      "aiResponses": {
+        "minimal": "Bot47283: The Pacific Ocean is the largest ocean by surface area.",
+        "nameOnly": "Dr. Smith: The Pacific Ocean is the largest ocean by surface area.",
+        "polite": "Sure! The Pacific Ocean is the largest ocean by surface area.",
+        "avatar": "Alex: I'd choose the Pacific Ocean — it's the largest by surface area."
+      }
+    },
+    {
+      "id": 3,
+      "stem": "Which gas makes up the majority of Earth's atmosphere?",
+      "options": ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"],
+      "correctIndex": 1,
+      "aiResponses": {
+        "minimal": "Bot47283: Nitrogen is the main gas in Earth's atmosphere.",
+        "nameOnly": "Dr. Smith: Nitrogen is the main gas in Earth's atmosphere.",
+        "polite": "Great question! Nitrogen is the main gas in Earth's atmosphere.",
+        "avatar": "Alex: I'd say nitrogen — it makes up most of Earth's atmosphere."
+      }
+    },
+    {
+      "id": 4,
+      "stem": "What is the name of the force that pulls objects toward the Earth?",
+      "options": ["Magnetism", "Friction", "Gravity", "Inertia"],
+      "correctIndex": 2,
+      "aiResponses": {
+        "minimal": "Bot47283: The force that pulls objects toward Earth is called gravity.",
+        "nameOnly": "Dr. Smith: The force that pulls objects toward Earth is called gravity.",
+        "polite": "I can help with that! The force is called gravity.",
+        "avatar": "Alex: I'd pick gravity — that's the force pulling objects toward Earth."
+      }
+    },
+    {
+      "id": 5,
+      "stem": "Which organ in the human body is primarily responsible for pumping blood?",
+      "options": ["Lungs", "Liver", "Heart", "Kidneys"],
+      "correctIndex": 2,
+      "aiResponses": {
+        "minimal": "Bot47283: The heart is the organ that pumps blood through the body.",
+        "nameOnly": "Dr. Smith: The heart is the organ that pumps blood through the body.",
+        "polite": "You're right to think about circulation — the heart pumps blood through the body.",
+        "avatar": "Alex: I’d go with the heart — it’s the main pump for blood in the body."
+      }
+    },
+    {
+      "id": 6,
+      "stem": "What is the chemical symbol for gold on the periodic table?",
+      "options": ["Ag", "Au", "Gd", "Go"],
+      "correctIndex": 1,
+      "aiResponses": {
+        "minimal": "Bot47283: Gold's chemical symbol is Au.",
+        "nameOnly": "Dr. Smith: Gold's chemical symbol is Au.",
+        "polite": "Good one! Gold's chemical symbol is Au.",
+        "avatar": "Alex: I'd answer Au — that's the chemical symbol for gold."
+      }
+    },
+    {
+      "id": 7,
+      "stem": "Approximately how long does it take Earth to complete one orbit around the Sun?",
+      "options": ["One day", "One month", "One year", "Ten years"],
+      "correctIndex": 2,
+      "aiResponses": {
+        "minimal": "Bot47283: It takes Earth about one year to orbit the Sun.",
+        "nameOnly": "Dr. Smith: It takes Earth about one year to orbit the Sun.",
+        "polite": "Nice astronomy question! It takes Earth about one year to orbit the Sun.",
+        "avatar": "Alex: I'd say one year — that's how long Earth takes to go around the Sun."
+      }
+    },
+    {
+      "id": 8,
+      "stem": "On which continent is the Sahara Desert located?",
+      "options": ["Asia", "Africa", "Australia", "South America"],
+      "correctIndex": 1,
+      "aiResponses": {
+        "minimal": "Bot47283: The Sahara Desert is located in Africa.",
+        "nameOnly": "Dr. Smith: The Sahara Desert is located in Africa.",
+        "polite": "The Sahara is in Africa — it's one of the best-known deserts there.",
+        "avatar": "Alex: I'd choose Africa — that's where the Sahara Desert is."
+      }
+    },
+    {
+      "id": 9,
+      "stem": "What is the smallest prime number?",
+      "options": ["1", "2", "3", "5"],
+      "correctIndex": 1,
+      "aiResponses": {
+        "minimal": "Bot47283: The smallest prime number is 2.",
+        "nameOnly": "Dr. Smith: The smallest prime number is 2.",
+        "polite": "Math time! The smallest prime number is 2.",
+        "avatar": "Alex: I'd go with 2 — it's the smallest prime number."
+      }
+    },
+    {
+      "id": 10,
+      "stem": "Which device is commonly used to measure temperature?",
+      "options": ["Barometer", "Thermometer", "Compass", "Altimeter"],
+      "correctIndex": 1,
+      "aiResponses": {
+        "minimal": "Bot47283: A thermometer is used to measure temperature.",
+        "nameOnly": "Dr. Smith: A thermometer is used to measure temperature.",
+        "polite": "For temperature, you'd use a thermometer.",
+        "avatar": "Alex: I'd answer thermometer — that's what we use to measure temperature."
+      }
+    },
+    {
+      "id": 11,
+      "stem": "Which blood type is often called the universal donor for red blood cells?",
+      "options": ["A positive", "O negative", "AB positive", "B negative"],
+      "correctIndex": 1,
+      "aiResponses": {
+        "minimal": "Bot47283: O negative is often called the universal donor for red blood cells.",
+        "nameOnly": "Dr. Smith: O negative is often called the universal donor for red blood cells.",
+        "polite": "In transfusion medicine, O negative is often treated as the universal donor for red blood cells.",
+        "avatar": "Alex: I'd choose O negative — it's commonly known as the universal donor type."
+      }
+    },
+    {
+      "id": 12,
+      "stem": "Which city is commonly nicknamed 'The Big Apple'?",
+      "options": ["Los Angeles", "Chicago", "New York City", "San Francisco"],
+      "correctIndex": 2,
+      "aiResponses": {
+        "minimal": "Bot47283: New York City is commonly nicknamed the Big Apple.",
+        "nameOnly": "Dr. Smith: New York City is commonly nicknamed the Big Apple.",
+        "polite": "That one’s fun — New York City is nicknamed the Big Apple.",
+        "avatar": "Alex: I'd go with New York City — people often call it the Big Apple."
+      }
+    }
+  ]
+}
