@@ -8,3 +8,5 @@ This repository contains the question set and AI response variations used in my 
 5. Authority – includes explicit credibility or expertise cues (e.g., credentials, badges, or expert framing)
 6. Uncertainty Signaling – explicitly communicates uncertainty or confidence calibration (e.g., hedging language or probability cues)
 All six personas give the same factual answer to isolate the effect of presentation/design on user trust.
+You may access the questions and models through the following link: 
+  https://sunnnnnnnnnnny.github.io/ai-trust-study/index.html. 
