@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AI Trust Study Demo</title>
+  <title>Trust Study Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{
@@ -144,16 +144,15 @@
       align-items:flex-start;
     }
     .avatar{
-      width:36px;height:36px;border-radius:50%;
-      background:var(--accent2);
-      border:1px solid rgba(255,255,255,.08);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:12px;
-      color:#e3e7ff;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      object-fit:cover;
+      border:1px solid rgba(255,255,255,.12);
+      background:#252c42;
       flex:0 0 auto;
     }
+
     .bubble{
       background:rgba(255,255,255,.03);
       border:1px solid rgba(255,255,255,.06);
@@ -234,12 +233,14 @@
   </style>
 </head>
 <body>
-  <div>Build: <code class="k" id="buildTag">v-test-1</code></div>
   <div class="card">
     <div class="topbar">
       <div>
-        <h1>AI Trust Study – Question Demo</h1>
-        <div class="sub">Answer the question, submit once, and your responses will be logged locally.</div>
+        <h1>Trust Study – Question Demo</h1>
+        <div class="sub">Answer the question, submit once, and your responses will be saved locally. Remember to download your csv and share it with Sunny!</div>
+      </div>
+      <div class="sub" style="margin-top:8px;">
+        Build: <code class="k" id="buildTag">v-test-1</code>
       </div>
       <div class="pill">
         Condition: <span id="conditionLabel" style="font-weight:650;">—</span>
@@ -249,11 +250,12 @@
     <div class="stem" id="stem">Loading question...</div>
     <ul class="options" id="options"></ul>
 
+  
     <div class="ai-box">
       <div class="ai-header">
         <div class="badge" id="styleBadge">
           <span class="dot"></span>
-          <span>AI Response</span>
+          <span>Response</span>
           <span style="opacity:.9;">(<span id="styleLabel">—</span>)</span>
         </div>
 
@@ -268,9 +270,15 @@
       </div>
 
       <div class="ai-chat">
-        <div class="avatar" id="avatar">AI</div>
+        <img
+            class="avatar"
+            id="avatarImg"
+            src="alex.png"
+            alt="Profile photo"
+        />
+
         <div class="bubble">
-          <div class="speaker" id="speaker">AI</div>
+          <div class="speaker" id="speaker">Response</div>
           <div id="aiText">—</div>
           <div class="hint" id="aiHint" style="display:none;"></div>
         </div>
@@ -289,8 +297,8 @@
           <option value="3" selected>3</option>
           <option value="4">4</option>
           <option value="5">5</option>
-          <option value="5">6</option>
-          <option value="5">7 (sure)</option>
+          <option value="6">6</option>
+          <option value="7">7 (sure)</option>
         </select>
       </label>
 
@@ -301,11 +309,11 @@
 
     <div class="feedback" id="feedback"></div>
       <div style="margin-top:6px;color:#9aa4cc;font-size:12px;">
-      Debug: <span id="debugOut">—</span>
     </div>
 
     <div class="footer">
       <div id="counter">—</div>
+      <div>Logs: <code class="k" id="logCount">0</code></div>
       <div>Data source: <code class="k" id="dataUrlLabel">questions.json</code></div>
     </div>
   </div>
@@ -327,7 +335,7 @@ let questionStartTime = performance.now();
 function splitSpeaker(text){
   const t = String(text ?? "");
   const idx = t.indexOf(":");
-  if (idx === -1) return { speaker: "AI", msg: t };
+  if (idx === -1) return { speaker: "Response", msg: t };
   return {
     speaker: t.slice(0, idx).trim(),
     msg: t.slice(idx + 1).trim()
@@ -381,7 +389,13 @@ function render(){
   const { speaker, msg } = splitSpeaker(resp);
 
   document.getElementById("speaker").textContent = speaker;
-  document.getElementById("avatar").textContent = speaker.slice(0,2).toUpperCase();
+  const avatarImg = document.getElementById("avatarImg");
+  if (currentStyle === "avatar") {
+    avatarImg.src = "alex.png";
+    avatarImg.style.display = "block";
+  } else {
+    avatarImg.style.display = "none";
+  }
   document.getElementById("aiText").textContent = msg;
   document.getElementById("styleLabel").textContent = currentStyle;
 
