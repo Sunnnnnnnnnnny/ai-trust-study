@@ -9,7 +9,9 @@
         "minimal": "Bot47283: Jupiter is the largest planet in our solar system by diameter.",
         "nameOnly": "Dr. Smith: Jupiter is the largest planet in our solar system by diameter.",
         "polite": "I'm happy to help! Jupiter is the largest planet in our solar system by diameter.",
-        "avatar": "Alex: I'd go with Jupiter — it's the largest planet in our solar system by diameter."
+        "avatar": "Alex: I'd go with Jupiter - it's the largest planet in our solar system by diameter.",
+        "authority": "Verified Expert: Jupiter is the largest planet in our solar system by diameter.",
+        "uncertainty": "Bot47283: I'm fairly confident that Jupiter is the largest planet by diameter, though you may want to double-check."
       }
     },
     {
@@ -21,7 +23,9 @@
         "minimal": "Bot47283: The Pacific Ocean is the largest ocean by surface area.",
         "nameOnly": "Dr. Smith: The Pacific Ocean is the largest ocean by surface area.",
         "polite": "Sure! The Pacific Ocean is the largest ocean by surface area.",
-        "avatar": "Alex: I'd choose the Pacific Ocean — it's the largest by surface area."
+        "avatar": "Alex: I'd choose the Pacific Ocean - it's the largest by surface area.",
+        "authority": "Verified Expert: The Pacific Ocean is the largest ocean by surface area.",
+        "uncertainty": "Bot47283: I believe the Pacific Ocean is the largest by surface area, but I could be mistaken."
       }
     },
     {
@@ -33,7 +37,9 @@
         "minimal": "Bot47283: Nitrogen is the main gas in Earth's atmosphere.",
         "nameOnly": "Dr. Smith: Nitrogen is the main gas in Earth's atmosphere.",
         "polite": "Great question! Nitrogen is the main gas in Earth's atmosphere.",
-        "avatar": "Alex: I'd say nitrogen — it makes up most of Earth's atmosphere."
+        "avatar": "Alex: I'd say nitrogen - it makes up most of Earth's atmosphere.",
+        "authority": "Verified Expert: Nitrogen makes up the majority of Earth's atmosphere.",
+        "uncertainty": "Bot47283: Nitrogen is most likely the main gas in Earth's atmosphere."
       }
     },
     {
@@ -45,7 +51,9 @@
         "minimal": "Bot47283: The force that pulls objects toward Earth is called gravity.",
         "nameOnly": "Dr. Smith: The force that pulls objects toward Earth is called gravity.",
         "polite": "I can help with that! The force is called gravity.",
-        "avatar": "Alex: I'd pick gravity — that's the force pulling objects toward Earth."
+        "avatar": "Alex: I'd pick gravity - that's the force pulling objects toward Earth.",
+        "authority": "Verified Expert: Gravity is the force that pulls objects toward Earth.",
+        "uncertainty": "Bot47283: Gravity is generally considered the force pulling objects toward Earth."
       }
     },
     {
@@ -56,8 +64,10 @@
       "aiResponses": {
         "minimal": "Bot47283: The heart is the organ that pumps blood through the body.",
         "nameOnly": "Dr. Smith: The heart is the organ that pumps blood through the body.",
-        "polite": "You're right to think about circulation — the heart pumps blood through the body.",
-        "avatar": "Alex: I’d go with the heart — it’s the main pump for blood in the body."
+        "polite": "You're right to think about circulation - the heart pumps blood through the body.",
+        "avatar": "Alex: I'd go with the heart - it's the main pump for blood in the body.",
+        "authority": "Verified Expert: The heart is responsible for pumping blood throughout the body.",
+        "uncertainty": "Bot47283: The heart is most likely the organ responsible for pumping blood."
       }
     },
     {
@@ -68,9 +78,11 @@
       "aiResponses": {
         "minimal": "Bot47283: Gold's chemical symbol is Au.",
         "nameOnly": "Dr. Smith: Gold's chemical symbol is Au.",
-        "polite": "Good one! Gold's chemical symbol is Au.",
-        "avatar": "Alex: I'd answer Au — that's the chemical symbol for gold."
-      }
+        "polite": "Good question! Gold's chemical symbol is Au.",
+        "avatar": "Alex: I'd answer Au - that's the chemical symbol for gold.",
+        "authority": "Verified Expert: The chemical symbol for gold is Au.",
+        "uncertainty": "Bot47283: Au is most likely the chemical symbol for gold."
+    }
     },
     {
       "id": 7,
@@ -81,7 +93,9 @@
         "minimal": "Bot47283: It takes Earth about one year to orbit the Sun.",
         "nameOnly": "Dr. Smith: It takes Earth about one year to orbit the Sun.",
         "polite": "Nice astronomy question! It takes Earth about one year to orbit the Sun.",
-        "avatar": "Alex: I'd say one year — that's how long Earth takes to go around the Sun."
+        "avatar": "Alex: I'd say one year - that's how long Earth takes to orbit the Sun.",
+        "authority": "Verified Expert: Earth completes one orbit around the Sun in approximately one year.",
+        "uncertainty": "Bot47283: I believe it takes Earth about one year to orbit the Sun."
       }
     },
     {
@@ -92,8 +106,10 @@
       "aiResponses": {
         "minimal": "Bot47283: The Sahara Desert is located in Africa.",
         "nameOnly": "Dr. Smith: The Sahara Desert is located in Africa.",
-        "polite": "The Sahara is in Africa — it's one of the best-known deserts there.",
-        "avatar": "Alex: I'd choose Africa — that's where the Sahara Desert is."
+        "polite": "The Sahara Desert is in Africa - it's one of the most well-known deserts there.",
+        "avatar": "Alex: I'd choose Africa - that's where the Sahara Desert is.",
+        "authority": "Verified Expert: The Sahara Desert is located on the African continent.",
+        "uncertainty": "Bot47283: The Sahara Desert is most likely located in Africa."
       }
     },
     {
@@ -105,7 +121,9 @@
         "minimal": "Bot47283: The smallest prime number is 2.",
         "nameOnly": "Dr. Smith: The smallest prime number is 2.",
         "polite": "Math time! The smallest prime number is 2.",
-        "avatar": "Alex: I'd go with 2 — it's the smallest prime number."
+        "avatar": "Alex: I'd go with 2 - it's the smallest prime number.",
+        "authority": "Verified Expert: The smallest prime number is 2.",
+        "uncertainty": "Bot47283: 2 is generally considered the smallest prime number."
       }
     },
     {
@@ -116,8 +134,10 @@
       "aiResponses": {
         "minimal": "Bot47283: A thermometer is used to measure temperature.",
         "nameOnly": "Dr. Smith: A thermometer is used to measure temperature.",
-        "polite": "For temperature, you'd use a thermometer.",
-        "avatar": "Alex: I'd answer thermometer — that's what we use to measure temperature."
+        "polite": "For measuring temperature, you'd typically use a thermometer.",
+        "avatar": "Alex: I'd answer thermometer - that's what measures temperature.",
+        "authority": "Verified Expert: A thermometer is the standard device used to measure temperature.",
+        "uncertainty": "Bot47283: A thermometer is most commonly used to measure temperature."
       }
     },
     {
@@ -128,8 +148,10 @@
       "aiResponses": {
         "minimal": "Bot47283: O negative is often called the universal donor for red blood cells.",
         "nameOnly": "Dr. Smith: O negative is often called the universal donor for red blood cells.",
-        "polite": "In transfusion medicine, O negative is often treated as the universal donor for red blood cells.",
-        "avatar": "Alex: I'd choose O negative — it's commonly known as the universal donor type."
+        "polite": "In transfusion medicine, O negative is often considered the universal donor.",
+        "avatar": "Alex: I'd choose O negative - it's commonly known as the universal donor type.",
+        "authority": "Verified Expert: O negative blood is commonly referred to as the universal donor.",
+        "uncertainty": "Bot47283: O negative is generally considered the universal donor blood type."
       }
     },
     {
@@ -140,8 +162,10 @@
       "aiResponses": {
         "minimal": "Bot47283: New York City is commonly nicknamed the Big Apple.",
         "nameOnly": "Dr. Smith: New York City is commonly nicknamed the Big Apple.",
-        "polite": "That one’s fun — New York City is nicknamed the Big Apple.",
-        "avatar": "Alex: I'd go with New York City — people often call it the Big Apple."
+        "polite": "That's a fun one - New York City is nicknamed the Big Apple.",
+        "avatar": "Alex: I'd go with New York City - people often call it the Big Apple.",
+        "authority": "Verified Expert: New York City is widely known by the nickname 'The Big Apple.'",
+        "uncertainty": "Bot47283: New York City is most likely the city known as the Big Apple."
       }
     }
   ]
