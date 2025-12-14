@@ -311,14 +311,14 @@ const DATA_URL = "questions.json";
   
 document.getElementById("dataUrlLabel").textContent = DATA_URL;
 
-const MODE = "study"; // change to "demo" to freely switch styles
+const MODE = "demo"; // change to "study" to be fixed on a style
 
 const STYLES = ["minimal", "nameOnly", "polite", "avatar", "authority", "uncertainty"];
 
 let questions = [];
 let currentIndex = 0;
 
-let assignedStyle = null;   // for study mode
+//let assignedStyle = null;   // for study mode
 let currentStyle = "minimal";
 
 let logs = JSON.parse(localStorage.getItem("ai_trust_logs") || "[]");
