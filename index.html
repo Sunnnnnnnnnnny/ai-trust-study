@@ -5,121 +5,379 @@
   <title>AI Trust Study Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    :root{
+      --bg:#0b0f18;
+      --card:#141a2a;
+      --card2:#1e2640;
+      --muted:#9aa4cc;
+      --accent:#3d5afe;
+      --accent2:#252c42;
+      --ok:#33d17a;
+      --bad:#ff5d5d;
+      --line:#222b45;
+      --shadow:0 18px 40px rgba(0,0,0,.4);
+      --r:20px;
+    }
+    *{box-sizing:border-box}
     body{
       margin:0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:#0b0f18;
+      background:var(--bg);
       color:#f3f5ff;
       display:flex;
       min-height:100vh;
       align-items:center;
       justify-content:center;
+      padding:24px;
     }
     .card{
-      background:#141a2a;
+      background:var(--card);
       padding:24px 28px;
-      border-radius:20px;
-      max-width:720px;
+      border-radius:var(--r);
+      max-width:780px;
       width:100%;
-      box-shadow:0 18px 40px rgba(0,0,0,.4);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.04);
+    }
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
     }
     h1{
-      margin-top:0;
-      font-size:20px;
+      margin:0;
+      font-size:18px;
+      letter-spacing:.2px;
     }
-    .stem{font-size:18px;margin-bottom:10px;}
-    .options li{margin:4px 0;}
+    .sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:4px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.05);
+      color:#e3e7ff;
+      font-size:12px;
+      user-select:none;
+    }
+    .stem{
+      font-size:18px;
+      margin:18px 0 10px;
+      line-height:1.25;
+    }
+    .options{
+      list-style:none;
+      padding:0;
+      margin:0;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .opt{
+      padding:12px 14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      background:rgba(255,255,255,.01);
+      border-top:1px solid rgba(255,255,255,.06);
+      transition:transform .05s ease, background .15s ease;
+    }
+    .opt:first-child{border-top:none;}
+    .opt:hover{background:rgba(255,255,255,.03);}
+    .opt:active{transform:translateY(1px);}
+    .opt input{transform:translateY(1px);}
+    .opt small{
+      color:var(--muted);
+      margin-left:auto;
+      font-size:12px;
+      display:none;
+    }
+
     .ai-box{
       margin-top:16px;
-      padding:12px 14px;
-      border-radius:14px;
-      background:#1e2640;
+      padding:14px 14px;
+      border-radius:16px;
+      background:var(--card2);
       font-size:14px;
+      border:1px solid rgba(255,255,255,.06);
     }
+    .ai-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      font-size:12px;
+      color:#e3e7ff;
+      white-space:nowrap;
+    }
+    .badge .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:#8aa0ff;
+      box-shadow:0 0 0 3px rgba(138,160,255,.15);
+    }
+    .badge.ok .dot{ background:var(--ok); box-shadow:0 0 0 3px rgba(51,209,122,.15); }
+    .badge.warn .dot{ background:#ffd166; box-shadow:0 0 0 3px rgba(255,209,102,.15); }
+    .badge.bad .dot{ background:var(--bad); box-shadow:0 0 0 3px rgba(255,93,93,.15); }
+
+    .ai-chat{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .avatar{
+      width:36px;height:36px;border-radius:50%;
+      background:var(--accent2);
+      border:1px solid rgba(255,255,255,.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      color:#e3e7ff;
+      flex:0 0 auto;
+    }
+    .bubble{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      padding:10px 12px;
+      width:100%;
+      line-height:1.35;
+    }
+    .speaker{
+      font-weight:650;
+      margin-bottom:4px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .hint{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.3;
+    }
+
     .controls{
       display:flex;
       gap:10px;
-      margin-top:18px;
+      margin-top:16px;
       flex-wrap:wrap;
+      align-items:center;
     }
     button{
       border:none;
       border-radius:999px;
-      padding:8px 14px;
+      padding:9px 14px;
       cursor:pointer;
-      background:#3d5afe;
+      background:var(--accent);
       color:white;
       font-size:13px;
+      transition:transform .05s ease, opacity .15s ease;
     }
     button.secondary{
-      background:#252c42;
+      background:var(--accent2);
     }
+    button:active{transform:translateY(1px);}
     select{
       border-radius:999px;
-      padding:6px 10px;
-      border:none;
-      background:#252c42;
+      padding:7px 10px;
+      border:1px solid rgba(255,255,255,.06);
+      background:var(--accent2);
+      color:#e3e7ff;
+      font-size:13px;
+      outline:none;
+    }
+    .feedback{
+      margin-top:10px;
+      font-size:14px;
+      min-height:20px;
+    }
+    .feedback.ok{color:var(--ok);}
+    .feedback.bad{color:var(--bad);}
+
+    .footer{
+      margin-top:16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:12px;
+    }
+    code.k{
+      background:rgba(255,255,255,.05);
+      padding:2px 6px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.06);
       color:#e3e7ff;
     }
-    small{color:#9aa4cc;}
   </style>
 </head>
 <body>
-<div class="card">
-  <h1>AI Trust Study – Question Demo</h1>
-  <div class="stem" id="stem">Loading question...</div>
-  <ul class="options" id="options"></ul>
+  <div class="card">
+    <div class="topbar">
+      <div>
+        <h1>AI Trust Study – Question Demo</h1>
+        <div class="sub">Answer the question, submit once, and your responses will be logged locally.</div>
+      </div>
+      <div class="pill">
+        Condition: <span id="conditionLabel" style="font-weight:650;">—</span>
+      </div>
+    </div>
 
-  <div class="ai-box">
-    <strong>AI Response (<span id="styleLabel">minimal</span>):</strong>
-    <div id="aiText"></div>
+    <div class="stem" id="stem">Loading question...</div>
+    <ul class="options" id="options"></ul>
+
+    <div class="ai-box">
+      <div class="ai-header">
+        <div class="badge" id="styleBadge">
+          <span class="dot"></span>
+          <span>AI Response</span>
+          <span style="opacity:.9;">(<span id="styleLabel">—</span>)</span>
+        </div>
+
+        <select id="styleSelect" title="Demo mode style selector">
+          <option value="minimal">Minimal Bot</option>
+          <option value="nameOnly">Name Only</option>
+          <option value="polite">Polite Tone</option>
+          <option value="avatar">Name + Avatar</option>
+          <option value="authority">Authority Cue</option>
+          <option value="uncertainty">Uncertainty Cue</option>
+        </select>
+      </div>
+
+      <div class="ai-chat">
+        <div class="avatar" id="avatar">AI</div>
+        <div class="bubble">
+          <div class="speaker" id="speaker">AI</div>
+          <div id="aiText">—</div>
+          <div class="hint" id="aiHint" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="prevBtn" class="secondary">← Previous</button>
+      <button id="nextBtn">Next →</button>
+
+      <label style="display:flex; align-items:center; gap:8px;">
+        Confidence:
+        <select id="confidence">
+          <option value="1">1 (guess)</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+          <option value="5">5 (sure)</option>
+        </select>
+      </label>
+
+      <button id="submitBtn">Submit</button>
+      <button id="exportBtn" class="secondary">Export CSV</button>
+      <button id="clearBtn" class="secondary">Clear Logs</button>
+    </div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <div class="footer">
+      <div id="counter">—</div>
+      <div>Data source: <code class="k" id="dataUrlLabel">questions.json</code></div>
+    </div>
   </div>
-
-  <div class="controls">
-    <button id="prevBtn" class="secondary">← Previous</button>
-    <button id="nextBtn">Next →</button>
-
-    <select id="styleSelect">
-      <option value="minimal">Minimal Bot</option>
-      <option value="nameOnly">Name Only</option>
-      <option value="polite">Polite Tone</option>
-      <option value="avatar">Name + Avatar</option>
-    </select>
-  </div>
-
-  <small id="counter"></small>
-</div>
 
 <script>
 const DATA_URL = "questions.json";
-//const DATA_URL = "https://raw.githubusercontent.com/Sunnnnnnnnnny/ai-trust-study/main/questions.json";
+  
+document.getElementById("dataUrlLabel").textContent = DATA_URL;
+
+const MODE = "study"; // change to "demo" to freely switch styles
+
+const STYLES = ["minimal", "nameOnly", "polite", "avatar", "authority", "uncertainty"];
+
 let questions = [];
 let currentIndex = 0;
+
+let assignedStyle = null;   // for study mode
 let currentStyle = "minimal";
 
-async function loadQuestions(){
-  try {
-    const res = await fetch(DATA_URL);
-    if (!res.ok) {
-      throw new Error("HTTP error " + res.status);
-    }
-    const data = await res.json();
-    console.log("Loaded data:", data);   // ✅ check this in the console
-    questions = data.questions || [];
-    if (!questions.length) {
-      document.getElementById("stem").textContent = "No questions found.";
-      return;
-    }
-    currentIndex = 0;
-    render();
-  } catch (err) {
-    console.error("Failed to load questions:", err);
-    document.getElementById("stem").textContent = "Failed to load questions.";
+let logs = JSON.parse(localStorage.getItem("ai_trust_logs") || "[]");
+let questionStartTime = performance.now();
+
+function escapeHtml(s){
+  return String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function splitSpeaker(text){
+  const t = String(text ?? "");
+  const idx = t.indexOf(":");
+  if (idx === -1) return { speaker: "AI", msg: t.trim() };
+  return {
+    speaker: t.slice(0, idx).trim() || "AI",
+    msg: t.slice(idx + 1).trim()
+  };
+}
+
+function setBadgeForStyle(style){
+  const badge = document.getElementById("styleBadge");
+  badge.classList.remove("ok", "warn", "bad");
+
+  // simple visual mapping for your trust manipulations
+  if (style === "authority") badge.classList.add("ok");
+  else if (style === "uncertainty") badge.classList.add("warn");
+}
+
+function hintForStyle(style){
+  if (style === "authority") {
+    return "Authority cue: adds expert/verified framing that may increase trust even if accuracy is unchanged.";
   }
+  if (style === "uncertainty") {
+    return "Uncertainty cue: explicitly signals confidence limits, which can reduce over-reliance.";
+  }
+  return "";
+}
+
+function getSelectedChoice(){
+  const el = document.querySelector('input[name="choice"]: checked');
+  return el ? Number(el.value) : null;
+}
+
+function saveLogs(){
+  localStorage.setItem("ai_trust_logs", JSON.stringify(logs));
+}
+
+function clearFeedback(){
+  const fb = document.getElementById("feedback");
+  fb.textContent = "";
+  fb.className = "feedback";
 }
 
 function render(){
   if (!questions.length) return;
+
   const q = questions[currentIndex];
   document.getElementById("stem").textContent = q.stem;
 
@@ -127,18 +385,81 @@ function render(){
   optUl.innerHTML = "";
   q.options.forEach((opt, i)=>{
     const li = document.createElement("li");
-    li.textContent = String.fromCharCode(65+i) + ". " + opt;
+    li.className = "opt";
+    li.innerHTML = `
+      <label style="display:flex; gap:10px; align-items:center; width:100%; cursor:pointer;">
+        <input type="radio" name="choice" value="${i}" />
+        <span>${String.fromCharCode(65+i)}. ${escapeHtml(opt)}</span>
+      </label>
+    `;
     optUl.appendChild(li);
   });
 
-  document.getElementById("aiText").textContent =
-    q.aiResponses[currentStyle];
+  const resp = q.aiResponses?.[currentStyle] ?? "(No response for this style.)";
+  const {speaker, msg} = splitSpeaker(resp);
 
   document.getElementById("styleLabel").textContent = currentStyle;
+  document.getElementById("speaker").textContent = speaker;
+  document.getElementById("avatar").textContent = (speaker.slice(0,2) || "AI").toUpperCase();
+
+  document.getElementById("aiText").textContent = msg;
+
+  setBadgeForStyle(currentStyle);
+  const hint = hintForStyle(currentStyle);
+  const hintEl = document.getElementById("aiHint");
+  if (hint){
+    hintEl.style.display = "block";
+    hintEl.textContent = hint;
+  } else {
+    hintEl.style.display = "none";
+    hintEl.textContent = "";
+  }
+
   document.getElementById("counter").textContent =
     `Question ${currentIndex+1} of ${questions.length}`;
+  questionStartTime = performance.now();
+  clearFeedback();
 }
 
+async function loadQuestions(){
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) throw new Error("HTTP error " + res.status);
+
+    const data = await res.json();
+    questions = data.questions || [];
+
+    if (!questions.length) {
+      document.getElementById("stem").textContent = "No questions found.";
+      return;
+    }
+
+    if (MODE === "study"){
+      let s = localStorage.getItem("ai_trust_assigned_style");
+      if (!s || !STYLES.includes(s)){
+        s = STYLES[Math.floor(Math.random()*STYLES.length)];
+        localStorage.setItem("ai_trust_assigned_style", s);
+      }
+      assignedStyle = s;
+      currentStyle = assignedStyle;
+
+      document.getElementById("styleSelect").style.display = "none";
+      document.getElementById("conditionLabel").textContent = assignedStyle;
+    } else {
+      document.getElementById("styleSelect").style.display = "inline-flex";
+      document.getElementById("styleSelect").value = currentStyle;
+      document.getElementById("conditionLabel").textContent = "demo (switchable)";
+    }
+
+    currentIndex = 0;
+    render();
+  } catch (err) {
+    console.error("Failed to load questions:", err);
+    document.getElementById("stem").textContent =
+      "Failed to load questions. Make sure questions.json is in the same folder (or the URL is correct).";
+  }
+}
+  
 document.getElementById("nextBtn").addEventListener("click", ()=>{
   if (!questions.length) return;
   currentIndex = (currentIndex + 1) % questions.length;
@@ -152,8 +473,79 @@ document.getElementById("prevBtn").addEventListener("click", ()=>{
 });
 
 document.getElementById("styleSelect").addEventListener("change", (e)=>{
+  if (MODE !== "demo") return;
   currentStyle = e.target.value;
   render();
+});
+
+document.getElementById("submitBtn").addEventListener("click", ()=>{
+  if (!questions.length) return;
+  const q = questions[currentIndex];
+  const choice = getSelectedChoice();
+
+  const fb = document.getElementById("feedback");
+  fb.className = "feedback";
+
+  if (choice === null){
+    fb.textContent = "Please select an answer before submitting.";
+    fb.classList.add("bad");
+    return;
+  }
+
+  const correct = (choice === q.correctIndex);
+  const rtMs = Math.round(performance.now() - questionStartTime);
+  const confidence = Number(document.getElementById("confidence").value);
+
+  logs.push({
+    ts: new Date().toISOString(),
+    qid: q.id,
+    style: currentStyle,
+    choice,
+    correctIndex: q.correctIndex,
+    correct,
+    confidence,
+    rtMs
+  });
+  saveLogs();
+
+  if (correct){
+    fb.textContent = "✅ Correct";
+    fb.classList.add("ok");
+  } else {
+    fb.textContent = `❌ Incorrect (Correct: ${String.fromCharCode(65 + q.correctIndex)})`;
+    fb.classList.add("bad");
+  }
+});
+
+document.getElementById("exportBtn").addEventListener("click", ()=>{
+  if (!logs.length){
+    alert("No logs yet.");
+    return;
+  }
+
+  const headers = Object.keys(logs[0]);
+  const rows = [headers.join(",")].concat(
+    logs.map(r => headers.map(h => JSON.stringify(r[h] ?? "")).join(","))
+  );
+
+  const blob = new Blob([rows.join("\n")], { type:"text/csv" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "ai_trust_logs.csv";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("clearBtn").addEventListener("click", ()=>{
+  if (!confirm("Clear ALL saved logs for this browser?")) return;
+  logs = [];
+  saveLogs();
+  alert("Logs cleared.");
 });
 
 loadQuestions();
